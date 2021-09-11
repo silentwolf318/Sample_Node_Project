@@ -24,8 +24,6 @@ jobs:
     - uses: actions/checkout@master
     - name: Run CloudDefense to check for vulnerabilities
       uses: cdefense/actions/node@master
-      env:
-        PROD_API_KEY: ${{ secrets.PROD_API_KEY }}
       with:
         project-name: Node_Github_Action_Test_1
         api-key: ${{ secrets.PROD_API_KEY }}
