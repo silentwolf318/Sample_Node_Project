@@ -1,0 +1,29 @@
+name: Javascript application
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js 12
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12 
+    - name: Install dependencies
+      run: |
+        npm install
+        
+    - uses: actions/checkout@master
+    - name: Run CloudDefense to check for vulnerabilities
+      uses: cdefense/actions/node@master
+      with:
+        project-name: Node_Github_Action_Test_1
+        api-key: ${{ secrets.PROD_API_KEY }}
